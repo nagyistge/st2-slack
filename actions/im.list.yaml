@@ -1,0 +1,13 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: im.list
+parameters:
+  end_point:
+    default: im.list
+    immutable: true
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python

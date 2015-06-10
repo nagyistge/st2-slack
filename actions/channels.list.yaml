@@ -1,0 +1,17 @@
+description: ''
+enabled: true
+entry_point: run.py
+name: channels.list
+parameters:
+  end_point:
+    default: channels.list
+    immutable: true
+    type: string
+  exclude_archived:
+    default: '0'
+    required: false
+    type: string
+  token:
+    required: false
+    type: string
+runner_type: run-python
