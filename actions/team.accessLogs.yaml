@@ -1,4 +1,4 @@
-description: ''
+description: This method is used to get the access logs for users on a team.
 enabled: true
 entry_point: run.py
 name: team.accessLogs

@@ -1,4 +1,4 @@
-description: ''
+description: This method posts a message to a channel.
 enabled: true
 entry_point: run.py
 name: chat.postMessage

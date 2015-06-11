@@ -1,4 +1,4 @@
-description: ''
+description: This method returns information about a team member.
 enabled: true
 entry_point: run.py
 name: users.info

@@ -3,6 +3,8 @@ import re
 import urllib2
 from bs4 import BeautifulSoup
 
+import sys
+
 method_dict = {}
 base_url = 'https://api.slack.com/methods'
 
@@ -18,6 +20,9 @@ for method in api_methods.stripped_strings:
         method_url = "%s/%s" % (base_url, method)
         method_page = urllib2.urlopen(method_url)
         method_soup = BeautifulSoup(method_page)
+        method_description = method_soup.find('section', attrs={"class":"tab_pane selected clearfix large_bottom_padding"}).find_all('p')[0].text
+        method_description = re.sub('\n|\r', ' ', method_description)
+        method_dict[method]['description'] = method_description
         method_args_table = method_soup.find('table', attrs={"class":"arguments full_width"}).tbody.find_all('tr')
         del method_args_table[0]
         for row in method_args_table:
@@ -44,7 +49,7 @@ for method in method_dict:
                     'runner_type': 'run-python',
                     'enabled': True,
                     'entry_point': 'run.py',
-                    'description': '',
+                    'description': method_dict[method]['description'],
                     'parameters': {
                        'end_point': {
                          'type': 'string',

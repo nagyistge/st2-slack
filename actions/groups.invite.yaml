@@ -1,4 +1,5 @@
-description: ''
+description: This method is used to invite a user to a private group. The calling
+  user must be a member of the group.
 enabled: true
 entry_point: run.py
 name: groups.invite

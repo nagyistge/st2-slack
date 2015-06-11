@@ -1,4 +1,5 @@
-description: ''
+description: This method allows you to exchange a temporary OAuth code for an API
+  access token. This is used as part of the OAuth authentication flow.
 enabled: true
 entry_point: run.py
 name: oauth.access
