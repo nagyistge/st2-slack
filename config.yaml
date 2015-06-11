@@ -1,2 +1,9 @@
 ---
 action_token: ""
+admin:
+  admin_token: ""
+  organization: ""
+  set_active: true
+  attempts: 1
+  auto_join_channels:
+    - C0123456
