@@ -26,11 +26,11 @@ class SlackAction(Action):
                                 headers=headers, params=data)
 
         results = response.json()
-        if results['ok'] is True:
-            return results
-        else:
+        if not results['ok']:
             failure_reason = ('Failed to perform action %s: %s \
                               (status code: %s)' % (end_point, response.text,
                               response.status_code))
             self.logger.exception(failure_reason)
             raise Exception(failure_reason)
+
+        return results
