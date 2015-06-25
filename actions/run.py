@@ -1,7 +1,11 @@
-import urllib
 import requests
+import urllib
+import urlparse
 
 from st2actions.runners.pythonrunner import Action
+
+BASE_URL = 'https://slack.com/api/'
+
 
 class SlackAction(Action):
 
@@ -14,7 +18,7 @@ class SlackAction(Action):
 
     def _get_request(self, params):
         end_point = params['end_point']
-        url = "https://slack.com/api/%s" % end_point
+        url = urlparse.urljoin(BASE_URL, end_point)
         del params['end_point']
 
         headers = {}
