@@ -21,9 +21,9 @@ class SendInviteAction(Action):
         headers = {}
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         body = {
-            'email': email,
+            'email': email.encode('utf-8'),
             'channels': " ".join(auto_join_channels),
-            'first_name': first_name,
+            'first_name': first_name.encode('utf-8'),
             'token': token,
             'set_active': set_active,
             '_attempts': attempts
@@ -33,7 +33,7 @@ class SendInviteAction(Action):
         response = requests.get(url=url,
                                 headers=headers, params=data)
         results = response.json()
-      
+
         if results['ok'] is True:
             return 'Invite successfully sent to %s. RESPONSE: %s' % \
                 (email, results)
