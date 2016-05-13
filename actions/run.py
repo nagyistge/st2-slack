@@ -23,7 +23,7 @@ class SlackAction(Action):
         del params['end_point']
 
         headers = {}
-        if end_point == "files.upload" and params['file']:
+        if end_point == "files.upload" and params.get('file', None):
             files = {'file': open(params['file'], 'rb')}
             del params['file']
         else:
