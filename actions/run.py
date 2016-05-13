@@ -18,16 +18,20 @@ class SlackAction(Action):
 
     def _get_request(self, params):
         end_point = params['end_point']
+        files = None
         url = urlparse.urljoin(BASE_URL, end_point)
         del params['end_point']
 
         headers = {}
-        headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        if end_point == "files.upload" and params['file']:
+            files = {'file': open(params['file'], 'rb')}
+            del params['file']
+        else:
+            headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
         data = urllib.urlencode(params)
         self.logger.info(data)
-        response = requests.get(url=url,
-                                headers=headers, params=data)
+        response = requests.post(url=url, headers=headers, params=data, files=files)
 
         results = response.json()
         if not results['ok']:
